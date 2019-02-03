@@ -11,30 +11,28 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@index');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');
 
 ///admin route group
 Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin', 'middleware'=>['auth', 'admin']], function(){
 
-	Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
-	Route::resource('tag', 'TagController');
-	Route::resource('category','CategoryController');
-	Route::resource('post','PostController');
-	Route::get('/pending/post', 'PostController@pending')->name('post.pending');
-	Route::put('post/{id}/aprove','PostController@approval')->name('post.approve');
-	Route::get('subscriber', 'SubscriberController@index')->name('subscriber.index');
-	Route::delete('subscriber/{subscriber}', 'SubscriberController@destroy')->name('subscriber.destroy');
+	Route::get('dashboard', 'DashboardController@index')->name('dashboard');
+	// Route::resource('tag', 'TagController');
+	// Route::resource('category','CategoryController');
+	Route::resource('room','RoomController');
+	// Route::get('/pending/post', 'RoomController@pending')->name('post.pending');
+	// Route::put('post/{id}/aprove','RoomController@approval')->name('post.approve');
+	// Route::get('subscriber', 'SubscriberController@index')->name('subscriber.index');
+	// Route::delete('subscriber/{subscriber}', 'SubscriberController@destroy')->name('subscriber.destroy');
 });
 
 //author route group
 Route::group(['as' => 'customer.', 'prefix' => 'customer', 'namespace' => 'Author', 'middleware'=>['auth', 'customer']], function(){
 	
 	Route::get('dashboard', 'AuthorController@index')->name('dashboard');
-	Route::resource('post','PostController');
+	// Route::resource('post','PostController');
 });

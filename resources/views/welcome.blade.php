@@ -1,98 +1,57 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.frontend.app')
+@section('slider')
+<section class="site-hero overlay" data-stellar-background-ratio="0.5" style="background-image: url({{asset('assets/frontend/images/big_image_1.jpg')}});">
+      <div class="container">
+        <div class="row align-items-center site-hero-inner justify-content-center">
+          <div class="col-md-12 text-center">
 
-        <title>Laravel</title>
-
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
-
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
+            <div class="mb-5 element-animate">
+              <h1>Welcome To<?php if(isset(Auth::user()->name)){ ;?>
+                {{Auth::user()->name
+              }}
+              <?php } ?> Our Luxury Rooms</h1>
+              <p>Discover our world's #1 Luxury Room For VIP.</p>
+              <p><a href="booknow.html" class="btn btn-primary">Book Now</a></p>
             </div>
+
+          </div>
         </div>
-    </body>
-</html>
+      </div>
+    </section>
+@endsection
+@section('rooms')
+    <section class="site-section">
+      <div class="container">
+        <div class="row"><h2 class="heading">Chose Your Room</h2></div>
+        <div class="row">
+          @foreach ($rooms as $room)
+            <div class="col-md-4 mb-4">
+              <div class="media d-block room mb-0">
+                <figure>
+                  <img src="{{ Storage::url('rooms/'.$room->image)}}" alt="Generic placeholder image" class="img-fluid">
+                  <div class="overlap-text">
+                    <span>
+                      Featured Room 
+                      <span class="ion-ios-star"></span>
+                      <span class="ion-ios-star"></span>
+                      <span class="ion-ios-star"></span>
+                    </span>
+                  </div>
+                </figure>
+                <div class="media-body">
+                  <h3 class="mt-0"><a href="#">{{ $room->title }}</a></h3>
+                  <ul class="room-specs">
+                    <li><span class="ion-ios-people-outline"></span> {{ $room->guest }} Guests</li>
+                    <li><span class="ion-ios-crop"></span> {{ $room->area }} ft <sup>2</sup></li>
+                  </ul>
+                  {!! $room->body !!}
+                  <p><a href="{{ $room->id }}" class="btn btn-primary btn-sm">Book Now From ${{ $room->price }}</a></p>
+                </div>
+              </div>
+            </div>
+          @endforeach
+        </div>
+      </div>
+    </section>
+
+@endsection
