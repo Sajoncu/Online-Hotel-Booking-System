@@ -45,7 +45,7 @@
                     <li><span class="ion-ios-crop"></span> {{ $room->area }} ft <sup>2</sup></li>
                   </ul>
                   {!! $room->body !!}
-                  <p><a href="{{ $room->id }}" class="btn btn-primary btn-sm">Book Now From ${{ $room->price }}</a></p>
+                  <p><a href="{{ route('customer.bookpage',$room->id) }}" class="btn btn-primary btn-sm">Book Now From ${{ $room->price }}</a></p>
                 </div>
               </div>
             </div>

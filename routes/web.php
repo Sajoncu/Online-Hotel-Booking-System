@@ -31,8 +31,8 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin', 'mi
 });
 
 //author route group
-Route::group(['as' => 'customer.', 'prefix' => 'customer', 'namespace' => 'Author', 'middleware'=>['auth', 'customer']], function(){
+Route::group(['as' => 'customer.', 'prefix' => 'customer', 'namespace' => 'Author', ], function(){
 	
 	Route::get('dashboard', 'AuthorController@index')->name('dashboard');
-	// Route::resource('post','PostController');
+	Route::get('book/{room}','AuthorController@bookNow')->name('bookpage');
 });
