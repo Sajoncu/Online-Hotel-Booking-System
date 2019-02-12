@@ -31,10 +31,17 @@
                                 </div>
                                 <div class="form-group form-float">
                                     <div class="form-line">
-                                        <input type="text" id="area" class="form-control" name="area"value="{{ $room->area }}">
+                                        <input type="text" id="area" class="form-control" name="area" value="{{ $room->area }}">
                                         <label class="form-label">Room Area</label>
                                     </div>
-                                </div>                                <div class="form-group form-float">
+                                </div>                                
+                                <div class="form-group form-float">
+                                    <div class="form-line">
+                                        <input type="text" id="price" class="form-control" name="price" value="{{ $room->price }}">
+                                        <label class="form-label">Room Price Per Night</label>
+                                    </div>
+                                </div>
+                                <div class="form-group form-float">
                                     <div class="form-line">
                                         <input type="text" id="room_number" class="form-control" name="room_number" value="{{ $room->room_number }}">
                                         <label class="form-label">Room Number</label>

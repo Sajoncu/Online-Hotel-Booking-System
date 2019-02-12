@@ -21,18 +21,22 @@ Auth::routes();
 Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin', 'middleware'=>['auth', 'admin']], function(){
 
 	Route::get('dashboard', 'DashboardController@index')->name('dashboard');
+	Route::get('allbooking', 'DashboardController@allNewBooking')->name('allbooking');
 	// Route::resource('tag', 'TagController');
 	// Route::resource('category','CategoryController');
 	Route::resource('room','RoomController');
+	Route::resource('booking','BookingController');
 	// Route::get('/pending/post', 'RoomController@pending')->name('post.pending');
-	// Route::put('post/{id}/aprove','RoomController@approval')->name('post.approve');
+	Route::put('booking/{id}/aprove','BookingController@approval')->name('booking.approve');
 	// Route::get('subscriber', 'SubscriberController@index')->name('subscriber.index');
 	// Route::delete('subscriber/{subscriber}', 'SubscriberController@destroy')->name('subscriber.destroy');
 });
 
 //author route group
-Route::group(['as' => 'customer.', 'prefix' => 'customer', 'namespace' => 'Author', ], function(){
+Route::group(['as' => 'customer.', 'prefix' => 'customer', 'namespace' => 'Author'], function(){
 	
 	Route::get('dashboard', 'AuthorController@index')->name('dashboard');
 	Route::get('book/{room}','AuthorController@bookNow')->name('bookpage');
+	Route::post('booking','AuthorController@bookingRoom')->name('booking');
+	Route::post('booking/{id}','AuthorController@bookingRoom')->name('booking.show');
 });

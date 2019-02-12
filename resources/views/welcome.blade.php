@@ -11,7 +11,7 @@
               }}
               <?php } ?> Our Luxury Rooms</h1>
               <p>Discover our world's #1 Luxury Room For VIP.</p>
-              <p><a href="booknow.html" class="btn btn-primary">Book Now</a></p>
+              {{-- <p><a href="booknow.html" class="btn btn-primary">Book Now</a></p> --}}
             </div>
 
           </div>

@@ -11,7 +11,7 @@
               }}
               <?php } ?> Our Luxury Rooms</h1>
               <p>Discover our world's #1 Luxury Room For VIP.</p>
-              <p><a href="booknow.html" class="btn btn-primary">Book Now</a></p>
+              {{-- <p><a href="booknow.html" class="btn btn-primary">Book Now</a></p> --}}
             </div>
 
           </div>
@@ -29,7 +29,6 @@
           <h1>Reservation</h1>
           <p>Discover our world's #1 Luxury Room For VIP.</p>
         </div>
-
       </div>
     </div>
   </div>
@@ -41,14 +40,15 @@
     <div class="row">
       <div class="col-md-6">
         <h2 class="mb-5">Reservation Form</h2>
-            <form action="#" method="post">
+            <form action="{{ route('customer.booking') }}" method="post">
+              @csrf
               <div class="row">
                   <div class="col-sm-6 form-group">
                       
                       <label for="">Arrival Date</label>
                       <div style="position: relative;">
                         <span class="fa fa-calendar icon" style="position: absolute; right: 10px; top: 10px;"></span>
-                        <input type='text' class="form-control" id='arrival_date' />
+                        <input type="date" class="form-control" id="arrival_date" name="arrival_date" />
                       </div>
                   </div>
 
@@ -57,7 +57,7 @@
                       <label for="">Departure Date</label>
                       <div style="position: relative;">
                         <span class="fa fa-calendar icon" style="position: absolute; right: 10px; top: 10px;"></span>
-                        <input type='text' class="form-control" id='departure_date' />
+                        <input type="date" class="form-control" id='departure_date' name="departure_date" />
                       </div>
                   </div>
                   
@@ -67,36 +67,48 @@
               <div class="row">
                 <div class="col-md-6 form-group">
                   <label for="room">Room</label>
-                  <select name="" id="room" class="form-control">
-                    <option value="">{{ $room->room_number}} Room</option>
+                  <select name="room_number" id="room_number" class="form-control">
+                    <option value="{{ $room->room_number }}">{{ $room->room_number }} Room</option>
                   </select>
                 </div>
 
                 <div class="col-md-6 form-group">
                   <label for="room">Guests</label>
-                  <select name="" id="room" class="form-control">
-                    <option value="">{{$room->guest}} Guest</option>
+                  <select name="guest" id="guest" class="form-control">
+                    <option value="{{$room->guest}}">{{$room->guest}} Guest</option>
                   </select>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-12 form-group">
                   <label for="email">Email</label>
-                  <input type="email" id="email" class="form-control ">
+                  <input type="email" id="email" class="form-control " name="email">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12 form-group">
+                  <label for="phone">Phone</label>
+                  <input type="text" id="phone" class="form-control " name="phone">
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-12 form-group">
                   <label for="message">Write a Note</label>
-                  <textarea name="message" id="message" class="form-control " cols="30" rows="8"></textarea>
+                  <textarea name="note" id="message" class="form-control " cols="30" rows="8"></textarea>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-6 form-group">
-                  <input type="submit" value="Reserve Now" class="btn btn-primary">
+                  @guest
+                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Login And Reserve</button>
+                  @else
+                      <input type="submit" value="Reserve Now" class="btn btn-primary">
+                  @endguest
+
                 </div>
               </div>
             </form>
+
           </div>
           <div class="col-md-1"></div>
           <div class="col-md-5">
@@ -123,7 +135,7 @@
             <p><a href="#" class="btn btn-primary btn-sm">Book Now From $20</a></p>
           </div>
         </div>
-          </div>
+      </div>
     </div>
   </div>
 </section>
@@ -144,6 +156,7 @@
     </div>
   </div>
 </section>
+
 <!-- END section -->
 
 @endsection

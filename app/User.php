@@ -35,4 +35,8 @@ class User extends Authenticatable
     public function rooms(){
         return $this->hasMany('App\Post');
     }
+
+    public function books(){
+        return $this->hasMany('App\Book');
+    }
 }
