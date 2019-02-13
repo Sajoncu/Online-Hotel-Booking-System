@@ -25,6 +25,7 @@ class CreateRoomsTable extends Migration
             $table->string('image')->default('default.png');
             $table->text('body');
             $table->boolean('status')->default(false);
+            $table->boolean('available')->default(true);
             $table->boolean('is_approved')->default(false);
             $table->foreign('user_id')
                     ->references('id')->on('users')

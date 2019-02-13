@@ -44,6 +44,12 @@
                                 <i class="material-icons">label</i>
                                 <span>Room</span>
                             </a>
+                        </li>                         
+                        <li class="{{Request::is('admin/available*')? 'active':''}}">
+                            <a href="{{route('admin.available.room')}}">
+                                <i class="material-icons">label</i>
+                                <span>All Available Rooms</span>
+                            </a>
                         </li>
                          <li class="{{Request::is('admin/allbooking*')? 'active':''}}">
                             <a href="{{route('admin.allbooking')}}">

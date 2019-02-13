@@ -37,6 +37,21 @@
                       <span class="ion-ios-star"></span>
                     </span>
                   </div>
+
+                  <div class="overlap-text" style="float: right;
+margin-left: 238px;">
+                    @if ($room->available == false)
+                      <span>
+                        UNAVAILABLE
+                      </span>
+                    @else
+                    <span>
+                      Available
+                    </span>
+                    @endif
+                    
+                  </div>
+
                 </figure>
                 <div class="media-body">
                   <h3 class="mt-0"><a href="#">{{ $room->title }}</a></h3>

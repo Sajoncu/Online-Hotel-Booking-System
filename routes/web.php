@@ -26,7 +26,7 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin', 'mi
 	// Route::resource('category','CategoryController');
 	Route::resource('room','RoomController');
 	Route::resource('booking','BookingController');
-	// Route::get('/pending/post', 'RoomController@pending')->name('post.pending');
+	Route::get('/available/room', 'RoomController@roomAvailable')->name('available.room');
 	Route::put('booking/{id}/aprove','BookingController@approval')->name('booking.approve');
 	// Route::get('subscriber', 'SubscriberController@index')->name('subscriber.index');
 	// Route::delete('subscriber/{subscriber}', 'SubscriberController@destroy')->name('subscriber.destroy');

@@ -202,6 +202,11 @@ class RoomController extends Controller
         return redirect()->route('admin.room.index');
     }
 
+    public function roomAvailable(){
+        $rooms = Room::where('available', true)->get();
+        return view('admin.room.availableroom',compact('rooms'));
+    }
+
     /**
      * Remove the specified resource from storage.
      *

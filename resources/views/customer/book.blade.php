@@ -1,17 +1,15 @@
 @extends('layouts.frontend.app')
 @section('slider')
-<section class="site-hero overlay" data-stellar-background-ratio="0.5" style="background-image: url({{asset('assets/frontend/images/big_image_1.jpg')}});">
-      <div class="container">
+{{--     <section class="site-hero site-hero-innerpage overlay" data-stellar-background-ratio="0.5" style="background-image: url({{asset('assets/frontend/images/big_image_1.jpg')}});">
+ --}}      
+<section class="site-hero site-hero-innerpage overlay" data-stellar-background-ratio="0.5" style="background-image: url({{ Storage::url('rooms/'.$room->image)}});">
+ <div class="container">
         <div class="row align-items-center site-hero-inner justify-content-center">
           <div class="col-md-12 text-center">
 
             <div class="mb-5 element-animate">
-              <h1>Welcome To<?php if(isset(Auth::user()->name)){ ;?>
-                {{Auth::user()->name
-              }}
-              <?php } ?> Our Luxury Rooms</h1>
-              <p>Discover our world's #1 Luxury Room For VIP.</p>
-              {{-- <p><a href="booknow.html" class="btn btn-primary">Book Now</a></p> --}}
+              <h1>Reservation</h1>
+              <p>Discover our world's, Luxury Room For VIP.</p>
             </div>
 
           </div>
@@ -44,7 +42,7 @@
               @csrf
               <div class="row">
                   <div class="col-sm-6 form-group">
-                      
+                      <input type="hidden" name="room_id" value="{{ $room->id }}"/>
                       <label for="">Arrival Date</label>
                       <div style="position: relative;">
                         <span class="fa fa-calendar icon" style="position: absolute; right: 10px; top: 10px;"></span>
@@ -99,12 +97,15 @@
               </div>
               <div class="row">
                 <div class="col-md-6 form-group">
+                  @if ($room->available == false)
+                    <button type="button" class="btn btn-primary" onclick="available();return false;">Unavailable</button>
+                  @else
                   @guest
                       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Login And Reserve</button>
                   @else
                       <input type="submit" value="Reserve Now" class="btn btn-primary">
                   @endguest
-
+                  @endif
                 </div>
               </div>
             </form>
@@ -156,7 +157,12 @@
     </div>
   </div>
 </section>
-
 <!-- END section -->
-
 @endsection
+@push('js')
+<script>
+  function available(){
+    alert('Room is not available :(');
+  }
+</script>
+@endpush

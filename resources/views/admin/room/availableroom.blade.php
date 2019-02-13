@@ -17,7 +17,7 @@
             <div class="card">
                 <div class="header">
                     <h2>
-                        All Post 
+                        All Available Rooms 
                         <span class="badge bg-blue">
                             {{$rooms->count()}}
                         </span>
@@ -28,9 +28,9 @@
                         <table class="table table-bordered table-striped table-hover dataTable js-exportable">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
+                                    <th>SL.</th>
                                     <th>Title</th>
-                                    <th>Author</th>
+                                    <th>Room Number</th>
                                     <th>Availability</i></th>
                                     <th>Is_Approved</th>
                                     <th>Status</th>
@@ -40,9 +40,9 @@
                             </thead>
                             <tfoot>
                                 <tr>
-                                    <th>ID</th>
+                                    <th>SL.</th>
                                     <th>Title</th>
-                                    <th>Author</th>
+                                    <th>Room Number</th>
                                     <th>Availability</th>
                                     <th>Is_Approved</th>
                                     <th>Status</th>
@@ -55,7 +55,7 @@
                                     <tr>
                                         <td>{{ $key + 1 }}</td>
                                         <td>{{ str_limit($room->title, '10') }}</td>
-                                        <td>{{ $room->user->name }}</td>
+                                        <td>{{ $room->room_number }}</td>
                                         <td>
                                             @if ($room->available == true)
                                                 <span class="badge bg-blue">Available</span>

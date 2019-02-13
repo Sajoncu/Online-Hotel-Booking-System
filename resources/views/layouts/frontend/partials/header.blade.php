@@ -42,6 +42,24 @@
                         </li>
                     
                 @else
+                @if(Auth::user()->role->id == 1)
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="rooms.html" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user-circle"></i> {{ Auth::user()->name }}</a>
+                  <div class="dropdown-menu" aria-labelledby="dropdown04">
+                    <a class="dropdown-item" target="_blank" href="{{ route('admin.dashboard') }}">Dashboard</a>
+                    {{-- <a class="dropdown-item" href="rooms.html">Sign Out</a> --}}
+                    <a class="dropdown-item" href="{{ route('logout') }}"
+                       onclick="event.preventDefault();
+                                     document.getElementById('logout-form').submit();">
+                        {{ __('Logout') }}
+                    </a>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                  </div>
+                </li>
+                @else
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="rooms.html" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user-circle"></i> {{ Auth::user()->name }}</a>
                   <div class="dropdown-menu" aria-labelledby="dropdown04">
@@ -60,6 +78,7 @@
                     </form>
                   </div>
                 </li>
+                @endif
                 @endguest
             </ul>
           </div>

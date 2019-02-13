@@ -37,6 +37,7 @@ class AuthorController extends Controller
     		'note' => 'required',
     	]);
 
+        $room = Room::find($request->room_id);
     	$book = new Book();
     	$book->user_id = Auth::user()->id;
     	$book->room_number = $request->room_number;
@@ -47,6 +48,10 @@ class AuthorController extends Controller
     	$book->phone = $request->phone;
     	$book->note = $request->note;
         $book->is_approve = false;
+        if ($room->available == true) {
+            $room->available = false;
+            $room->save();
+        }
     	$book->save();
 
     	//send notification to the admin
