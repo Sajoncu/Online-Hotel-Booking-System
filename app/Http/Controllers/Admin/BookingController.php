@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 use App\Book;
+use App\Checkout;
 use App\Http\Controllers\Controller;
 use App\Notifications\BookingApproved;
+use App\Room;
 use Brian2694\Toastr\Facades\Toastr;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class BookingController extends Controller
@@ -95,6 +98,35 @@ class BookingController extends Controller
         }
 
         return redirect()->back();
+    }
+
+
+    public function bookingCheckout(Request $request){
+        //return $request;
+        $date = date('d-m-Y');
+        $room_id = $request->room_id;
+        $price = $request->total_price;
+        $checkout = new Checkout();
+
+        $checkout->room_id = $room_id;
+        $checkout->total_price  = $price;
+        $checkout->checkoutdate = $date;
+        $checkout->save();
+
+        if (isset($request->book_id)) {
+            $room = Room::find($request->room_id);
+            $room->available = true;
+            $room->save();
+        }
+        
+        if (isset($request->room_id)) {
+            $book = Book::find($request->book_id);
+            //$book->delete();
+        }
+
+
+        Toastr::success('Checked out successfully :)','success');
+        return view('admin.booking.allnewbooking');
     }
 
     /**

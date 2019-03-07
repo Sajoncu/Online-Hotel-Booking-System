@@ -17,6 +17,8 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->integer('role_id')->default(2);
             $table->string('name');
+            $table->integer('phone')->unique()->default(0);
+            $table->string('skype')->default('skype');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

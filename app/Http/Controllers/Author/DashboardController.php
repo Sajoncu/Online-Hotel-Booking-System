@@ -1,9 +1,7 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
-use App\Book;
-use App\User;
-use Illuminate\Support\Facades\Hash;
+namespace App\Http\Controllers\Author;
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Brian2694\Toastr\Facades\Toastr;
@@ -11,20 +9,16 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Hash;
+use App\User;
 
 class DashboardController extends Controller
 {
     public function index(){
-    	return view('admin.dashboard');
+        return view('customer.dashboard');
     }
-
-    public function allNewBooking(){
-    	$books = Book::all();
-    	return view('admin.booking.allnewbooking',compact('books'));
-    }
-
     public function profile(){
-    	return view('admin.profile');
+    	return view('customer.profile');
     }
 
     public function updateProfileData(Request $request){
@@ -45,18 +39,18 @@ class DashboardController extends Controller
                 $dateTime = Carbon::now()->toDateString();
                 $imageName = $slug.'-'.$dateTime.'-'.uniqid().'.'.$image->getClientOriginalExtension();
 
-                if (!Storage::disk('public')->exists('admin'))
+                if (!Storage::disk('public')->exists('customer'))
                 {
-                    Storage::disk('public')->makeDirectory('admin');
+                    Storage::disk('public')->makeDirectory('customer');
                 }
 
-                if (Storage::disk('public')->exists('admin/'.$user->image)) 
+                if (Storage::disk('public')->exists('customer/'.$user->image)) 
                 {
-                    Storage::disk('public')->delete('admin/'.$user->image);
+                    Storage::disk('public')->delete('customer/'.$user->image);
                 }
 
                 $profileImage = Image::make($image)->resize(332, 397)->save($imageName);
-                Storage::disk('public')->put('admin/'.$imageName, $profileImage);
+                Storage::disk('public')->put('customer/'.$imageName, $profileImage);
             }
             else
             {
@@ -93,7 +87,7 @@ class DashboardController extends Controller
                 $user->save();
                 Toastr::success('Password Successfully Changed.', 'success');
                 Auth::logout();
-                return view('login');
+                return redirect()->back();
             }
             else
             {

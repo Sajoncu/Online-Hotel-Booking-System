@@ -39,6 +39,12 @@
                                 <span>Dashboard</span>
                             </a>
                         </li>
+                         <li class="{{Request::is('admin/profile')? 'active':''}}">
+                            <a href="{{route('admin.profile')}}">
+                                <i class="material-icons">people</i>
+                                <span>Profile</span>
+                            </a>
+                        </li>
                          <li class="{{Request::is('admin/room*')? 'active':''}}">
                             <a href="{{route('admin.room.index')}}">
                                 <i class="material-icons">label</i>
@@ -51,7 +57,7 @@
                                 <span>All Available Rooms</span>
                             </a>
                         </li>
-                         <li class="{{Request::is('admin/allbooking*')? 'active':''}}">
+                         <li class="{{Request::is('admin/booking/*')? 'active':''}}">
                             <a href="{{route('admin.allbooking')}}">
                                 <i class="material-icons">label</i>
                                 <span>New Booking</span>
@@ -81,6 +87,25 @@
                                 <span>Subscriber</span>
                             </a>
                         </li> --}}
+                        @elseif(Request::is('customer*'))
+                            <li class="{{ Request::is('customer/dashboard') ? 'active' : ''}}">
+                                <a href="{{ route('customer.dashboard') }}">
+                                    <i class="material-icons">home</i>
+                                    <span>Dahsboard</span>
+                                </a>
+                            </li>
+{{--                             <li class="{{ Request::is('user/property*')?'active' : ''}}">
+                                <a href="{{ route('user.property.index') }}">
+                                    <i class="material-icons">apps</i>
+                                    <span>Property</span>
+                                </a>
+                            </li> --}}
+                            <li class="{{ Request::is('customer/profile*')?'active' : ''}}">
+                                <a href="{{ route('customer.profile') }}">
+                                    <i class="material-icons">person</i>
+                                    <span>Profile</span>
+                                </a>
+                            </li>
                         <li class="header">System</li>
                         <li>
                             <a class="dropdown-item" href="{{ route('logout') }}"
@@ -101,7 +126,7 @@
             <!-- Footer -->
             <div class="legal">
                 <div class="copyright">
-                    &copy; 2018 - 2018 <a href="javascript:void(0);">SBlog - Carry Knowledge</a>.
+                    &copy; 2018 - 2018 <a href="javascript:void(0);">Luxury Hotel - Carry Knowledge</a>.
                 </div>
                 <div class="version">
                     <b>Version: </b> 1.0.5

@@ -37,7 +37,7 @@ class LoginController extends Controller
         if(Auth::check() && Auth::user()->role->id == 1){
             $this->redirectTo = route('admin.dashboard');
         }else{
-            return redirect()->back();
+            $this->redirectTo = route('customer.dashboard');
         }
         $this->middleware('guest')->except('logout');
     }

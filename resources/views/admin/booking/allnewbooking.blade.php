@@ -19,7 +19,11 @@
                     <h2>
                         All New Booking 
                         <span class="badge bg-blue">
+                            @if (empty($books))
+                            {{0}}
+                            @else
                             {{$books->count()}}
+                            @endif
                         </span>
                     </h2>
                 </div>
@@ -33,7 +37,7 @@
                                     <th>Email</th>
                                     <th>Phone Number</th>
                                     <th>Is_Approved</th>
-                                    <th>Status</th>
+{{--                                     <th>Status</th> --}}
                                     <th>Created At</th>
                                     <th>Action</th>
                                 </tr>
@@ -45,13 +49,16 @@
                                     <th>Email</th>
                                     <th>Phone Number</th>
                                     <th>Is_Approved</th>
-                                    <th>Status</th>
+{{--                                     <th>Status</th> --}}
                                     <th>Created At</th>
                                     <th>Action</th>
                                 </tr>
                                 </tr>
                             </tfoot>
                             <tbody>
+                                @if (!empty($books))
+                                  {{-- expr --}}
+
                                 @foreach ($books as $key=>$book)
                                     <tr>
                                         <td>{{ $key + 1 }}</td>
@@ -59,19 +66,19 @@
                                         <td>{{ $book->user->email }}</td>
                                         <td>{{ $book->phone }}</td>
                                         <td>
-                                            @if ($book->is_approved == true)
+                                            @if ($book->is_approve == true)
                                                 <span class="badge bg-blue">Approved</span>
                                             @else
                                                 <span class="badge bg-pink">Pending</span>
                                             @endif
                                         </td>
-                                        <td>
+{{--                                         <td>
                                             @if ($book->status == true)
                                                 <span class="badge bg-blue">Published</span>
                                             @else
                                                 <span class="badge bg-pink">Pending</span>
                                             @endif
-                                        </td>
+                                        </td> --}}
                                         <td>{{ $book->created_at->toFormattedDateString() }}</td>
                                         <td class="text-center">
                                             <a class="btn btn-info waves-effect" href="{{route('admin.booking.show', $book->id)}}">
@@ -106,7 +113,7 @@
                                         </td>
                                     </tr>
                                 @endforeach
-
+                                @endif
                             </tbody>
                         </table>
                     </div>

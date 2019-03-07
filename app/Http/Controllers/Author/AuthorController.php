@@ -32,14 +32,15 @@ class AuthorController extends Controller
     		'departure_date' => 'required',
     		'room_number' => 'required',
     		'guest' => 'required',
-    		'email' => 'required|email',
+    		'email' => 'required|email|regex:/[a-zA-Z]+@[a-zA-Z]+(\.[a-zA-Z]+)+/',
     		'phone' => 'required|numeric',
     		'note' => 'required',
     	]);
 
         $room = Room::find($request->room_id);
     	$book = new Book();
-    	$book->user_id = Auth::user()->id;
+        $book->user_id = Auth::user()->id;
+    	$book->room_id = $request->room_id;
     	$book->room_number = $request->room_number;
     	$book->guest = $request->guest;
     	$book->arrival_date = $request->arrival_date;
@@ -52,6 +53,7 @@ class AuthorController extends Controller
             $room->available = false;
             $room->save();
         }
+        
     	$book->save();
 
     	//send notification to the admin
