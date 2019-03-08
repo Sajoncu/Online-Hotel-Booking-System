@@ -26,4 +26,12 @@ class HomeController extends Controller
         $rooms = Room::all();
         return view('welcome', compact('rooms'));
     }
+
+    public function contactUs(){
+        return view('contact-us');
+    }
+
+    public function abouttUs(){
+        return view('about-us');
+    }
 }

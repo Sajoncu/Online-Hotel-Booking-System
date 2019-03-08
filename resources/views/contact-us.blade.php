@@ -20,7 +20,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-6">
-        <h2 class="mb-5">Contact Form</h2>
+        <h2 class="mb-5">Contact Us</h2>
       <form action="#" method="post">
               <div class="row">
                 <div class="col-md-12 form-group">
@@ -56,7 +56,7 @@
           <div class="col-md-1"></div>
           <div class="col-md-5">
             <h3 class="mb-5">Paragraph</h3>
-            <p class="mb-5"><img src="images/img_4.jpg" alt="" class="img-fluid"></p>
+            <p class="mb-5"><img src="{{asset('assets/frontend/images/img_4.jpg')}}" alt="" class="img-fluid"></p>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae labore aspernatur cumque inventore voluptatibus odit doloribus! Ducimus, animi perferendis repellat. Ducimus harum alias quas, quibusdam provident ea sed, sapiente quo.</p>
             <p>Ullam cumque eveniet, fugiat quas maiores, non modi eos deleniti minima, nesciunt assumenda sequi vitae culpa labore nulla! Cumque vero, magnam ab optio quidem debitis dignissimos nihil nesciunt vitae impedit!</p>
           </div>
@@ -69,7 +69,7 @@
 
 
 
-<section class="section-cover" data-stellar-background-ratio="0.5" style="background-image: url(images/img_5.jpg);">
+<section class="section-cover" data-stellar-background-ratio="0.5" style="background-image: url({{asset('assets/frontend/images/img_5.jpg')}});">
   <div class="container">
     <div class="row justify-content-center align-items-center intro">
       <div class="col-md-9 text-center element-animate">

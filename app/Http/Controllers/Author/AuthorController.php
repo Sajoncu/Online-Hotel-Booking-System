@@ -11,6 +11,7 @@ use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Session;
 
 class AuthorController extends Controller
 {
@@ -21,7 +22,7 @@ class AuthorController extends Controller
     public function bookNow($id)
     {
         $room = Room::find($id);
-
+        session(['last_room_id' => $room->id]);
         return view('customer.book', compact('room'));
     }
 

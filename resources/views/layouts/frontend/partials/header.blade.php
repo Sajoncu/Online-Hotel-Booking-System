@@ -9,36 +9,36 @@
           <div class="collapse navbar-collapse navbar-light" id="navbarsExample05">
             <ul class="navbar-nav ml-auto pl-lg-5 pl-0">
               <li class="nav-item">
-                <a class="nav-link active" href="/">Home</a>
+                <a class="nav-link {{Request::is('/')? 'active':''}}" href="/">Home</a>
               </li>
               <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="rooms.html" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Rooms</a>
+                <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Rooms</a>
                 <div class="dropdown-menu" aria-labelledby="dropdown04">
-                  <a class="dropdown-item" href="rooms.html">Room Videos</a>
-                  <a class="dropdown-item" href="rooms.html">Presidential Room</a>
-                  <a class="dropdown-item" href="rooms.html">Luxury Room</a>
-                  <a class="dropdown-item" href="rooms.html">Deluxe Room</a>
+                  <a class="dropdown-item" href="#">Room Videos</a>
+                  <a class="dropdown-item" href="#">Presidential Room</a>
+                  <a class="dropdown-item" href="#">Luxury Room</a>
+                  <a class="dropdown-item" href="#">Deluxe Room</a>
                 </div>
               </li>
-              <li class="nav-item">
+{{--               <li class="nav-item">
                 <a class="nav-link" href="blog.html">Blog</a>
+              </li> --}}
+              <li class="nav-item">
+                <a class="nav-link {{Request::is('about-us')? 'active':''}}" href="{{route('aboutus')}}">About</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="about.html">About</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="contact.html">Contact</a>
+                <a class="nav-link {{Request::is('contact-us')? 'active':''}}" href="{{route('contactus')}}">Contact</a>
               </li>
               
 
                 @guest
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        <a class="nav-link" data-toggle="modal" data-target="#myModal" href="">{{ __('Login') }}</a>
                     </li>
                     
                     
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            <a class="nav-link" data-toggle="modal" data-target="#myModalReg" href="{{ route('register') }}">{{ __('Register') }}</a>
                         </li>
                     
                 @else

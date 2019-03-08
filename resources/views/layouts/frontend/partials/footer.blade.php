@@ -4,7 +4,7 @@
           <div class="col-md-4">
             <h3>Phone Support</h3>
             <p>24/7 Call us now.</p>
-            <p class="lead"><a href="tel://">+ 1 332 3093 323</a></p>
+            <p class="lead"><a href="tel://">+8801622-567102</a></p>
           </div>
           <div class="col-md-4">
             <h3>Connect With Us</h3>
@@ -32,7 +32,7 @@
         <div class="row justify-content-center">
           <div class="col-md-7 text-center">
             &copy; <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://dreamhotel.com" target="_blank">Colorlib</a>
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="#" target="_blank">SIS TECHNOLOGY</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
           </div>
         </div>

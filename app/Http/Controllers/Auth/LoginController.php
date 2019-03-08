@@ -37,7 +37,12 @@ class LoginController extends Controller
         if(Auth::check() && Auth::user()->role->id == 1){
             $this->redirectTo = route('admin.dashboard');
         }else{
-            $this->redirectTo = route('customer.dashboard');
+            $id = session()->get('last_room_id');
+            if (isset($id)) {
+                $this->redirectTo = route('customer.bookpage', $id);
+            }else{
+                $this->redirectTo = route('welcome');
+            }
         }
         $this->middleware('guest')->except('logout');
     }
